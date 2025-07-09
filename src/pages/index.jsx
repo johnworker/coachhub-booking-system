@@ -1,13 +1,12 @@
-import Collect from "./Collect";
-import CreatePost from "./CreatePost";
-import EditPost from "./EditPost";
-import Home from "./Home";
-import Login from "./Login";
-import NotFound from "./NotFound";
-import Post from "./Post";
-import Search from "./Search";
-import Setting from "./Setting";
+import Instructors from "./Instructors/InstructorList";
+import Booking from "./Booking/Booking";
+import MyBookings from "./MyBookings/MyBookings";
+import Home from "./Home/Home";
+import Auth from "./Auth/Login";
+import NotFound from "./NotFound/NotFound";
+import Admin from "./Admin/Dashboard";
+import Settings from "./Settings/Settings";
 
-export { Collect, CreatePost, EditPost, Home,
-    Login, NotFound, Post, Search, Setting
+export { Instructors, Booking, MyBookings, Home,
+    Auth, NotFound, Admin, Settings
 }
