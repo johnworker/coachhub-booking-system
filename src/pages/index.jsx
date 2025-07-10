@@ -3,7 +3,7 @@ import Booking from "./Booking/Booking";
 import MyBookings from "./MyBookings/MyBookings";
 import Home from "./Home/Home";
 import Auth from "./Auth/Login";
-import NotFound from "./NotFound/NotFound";
+import NotFound from "./NotFound";
 import Admin from "./Admin/Dashboard";
 import Settings from "./Settings/Settings";
 

@@ -1,0 +1,66 @@
+coachhub-booking-system/
+├─ .vscode/
+├─ node_modules/
+├─ public/
+│   └─ index.html
+├─ src/
+│   ├─ assets/                     
+│   │   ├─ css/
+│   │   │   ├─ reset.css
+│   │   │   └─ index.css
+│   │   └─ images/                 # 放教練大頭照、logo、站點 icon…
+│   ├─ components/                 
+│   │   ├─ Navbar.jsx              # 全站導覽列
+│   │   ├─ Footer.jsx              # 全站頁尾
+│   │   ├─ Loading.jsx             # 請求中 Spinner
+│   │   ├─ ProtectedRoute.jsx      # 一般會員路由守衛
+│   │   ├─ AdminRoute.jsx          # 管理員路由守衛
+│   │   ├─ CoachCard.jsx           # 教練卡片 (列表用)
+│   │   ├─ FilterBar.jsx           # 篩選工具列 (分類/地區/價格/搜尋)
+│   │   ├─ Pagination.jsx          # 分頁控制
+│   │   ├─ BookingForm.jsx         # 預約表單（日曆＋時間＋備註）
+│   │   ├─ BookingTable.jsx        # 我的預約清單＋操作 (QR／編輯／取消)
+│   │   ├─ ProfileForm.jsx         # 大頭貼＋姓名／Email／Phone 表單
+│   │   └─ PasswordForm.jsx        # 修改密碼表單
+│   ├─ hooks/                      
+│   │   ├─ useAuth.js              # 登入狀態管理 (Zustand)
+│   │   └─ useFetch.js             # 通用 fetch/axios Hook
+│   ├─ services/                   
+│   │   ├─ api.js                  # axios instance + JWT 攔截器
+│   │   ├─ auth.js                 # /auth/login, /auth/register, /auth/profile
+│   │   ├─ coach.js                # /coaches, /coaches/:id
+│   │   └─ booking.js              # /bookings CRUD
+│   ├─ store/                      
+│   │   ├─ authStore.js            # token + user profile
+│   │   └─ bookingStore.js         # 我的預約暫存
+│   ├─ pages/                      
+│   │   ├─ Home/                   
+│   │   │   ├─ Home.jsx            # 首頁：熱門教練＋How It Works
+│   │   │   └─ Home.css
+│   │   ├─ Auth/                   
+│   │   │   ├─ Login.jsx           # 登入頁
+│   │   │   └─ Register.jsx        # 註冊頁
+│   │   ├─ Instructors/            
+│   │   │   ├─ InstructorList.jsx  # 教練列表＋篩選＋分頁
+│   │   │   └─ InstructorDetail.jsx# 教練詳情＋預約表單
+│   │   ├─ Booking/                
+│   │   │   └─ Booking.jsx         # 編輯／建立預約
+│   │   ├─ MyBookings/             
+│   │   │   └─ MyBookings.jsx      # 我的預約清單
+│   │   ├─ Settings/               
+│   │   │   └─ Settings.jsx        # 使用者設定 (ProfileForm + PasswordForm)
+│   │   ├─ Admin/                  
+│   │   │   ├─ Dashboard.jsx       # 管理後台總覽 (報表＋教練表格)
+│   │   │   ├─ CoachesMgnt.jsx     # 教練管理 (CRUD)
+│   │   │   └─ BookingsMgnt.jsx    # 預約管理 (CRUD)
+│   │   └─ NotFound.jsx            # 404
+│   ├─ router/                     
+│   │   └─ index.jsx               # React Router v6 設定
+│   ├─ App.jsx                     
+│   └─ main.jsx                    
+├─ .gitignore
+├─ package.json
+├─ tailwind.config.js
+├─ postcss.config.js
+├─ vite.config.js
+└─ README.md
