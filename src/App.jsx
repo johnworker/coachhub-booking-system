@@ -1,11 +1,16 @@
-import { RouterProvider } from 'react-router-dom'
-import router from './router'
+import React from 'react'
+import AppRouter from './router'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
-function App() {
-
+export default function App() {
   return (
-    <RouterProvider router={router}></RouterProvider>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <main className="flex-grow container mx-auto px-4 py-6">
+        <AppRouter />
+      </main>
+      <Footer />
+    </div>
   )
 }
-
-export default App

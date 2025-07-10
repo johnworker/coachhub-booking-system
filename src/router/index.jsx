@@ -1,7 +1,9 @@
+import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProtectedRoute from '../components/ProtectedRoute'
 import AdminRoute from '../components/AdminRoute'
 
+// pages
 import Home from '../pages/Home/Home'
 import Login from '../pages/Auth/Login'
 import Register from '../pages/Auth/Register'
@@ -11,30 +13,55 @@ import Booking from '../pages/Booking/Booking'
 import MyBookings from '../pages/MyBookings/MyBookings'
 import Settings from '../pages/Settings/Settings'
 import Dashboard from '../pages/Admin/Dashboard'
+import CoachesMgnt from '../pages/Admin/CoachesMgnt'
+import BookingsMgnt from '../pages/Admin/BookingsMgnt'
 import NotFound from '../pages/NotFound'
 
 const router = createBrowserRouter([
+  // 公開路由
   { path: '/login', element: <Login /> },
   { path: '/register', element: <Register /> },
 
-  { path: '/', element: <ProtectedRoute><Home /></ProtectedRoute> },
-  { path: '/coaches', element: <ProtectedRoute><InstructorList /></ProtectedRoute> },
-  { path: '/coaches/:id', element: <ProtectedRoute><InstructorDetail /></ProtectedRoute> },
-  { path: '/booking/:coachId', element: <ProtectedRoute><Booking /></ProtectedRoute> },
-  { path: '/my-bookings', element: <ProtectedRoute><MyBookings /></ProtectedRoute> },
-  { path: '/settings', element: <ProtectedRoute><Settings /></ProtectedRoute> },
-
+  // 會員路由
   {
-    path: '/admin', element: <AdminRoute><Dashboard/></AdminRoute>,
+    path: '/',
+    element: <ProtectedRoute><Home/></ProtectedRoute>,
+  },
+  {
+    path: '/coaches',
+    element: <ProtectedRoute><InstructorList/></ProtectedRoute>,
+  },
+  {
+    path: '/coaches/:id',
+    element: <ProtectedRoute><InstructorDetail/></ProtectedRoute>,
+  },
+  {
+    path: '/booking/:coachId',
+    element: <ProtectedRoute><Booking/></ProtectedRoute>,
+  },
+  {
+    path: '/my-bookings',
+    element: <ProtectedRoute><MyBookings/></ProtectedRoute>,
+  },
+  {
+    path: '/settings',
+    element: <ProtectedRoute><Settings/></ProtectedRoute>,
+  },
+
+  // 管理後台
+  {
+    path: '/admin',
+    element: <AdminRoute><Dashboard/></AdminRoute>,
     children: [
       { path: 'coaches', element: <CoachesMgnt/> },
       { path: 'bookings', element: <BookingsMgnt/> },
     ]
   },
 
+  // 404
   { path: '*', element: <NotFound /> }
 ])
 
-export default function AppRouter(){
-  return <RouterProvider router={router}/>
+export default function AppRouter() {
+  return <RouterProvider router={router} />
 }
