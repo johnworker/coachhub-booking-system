@@ -7,6 +7,7 @@ import NotFound from "./NotFound";
 import Admin from "./Admin/Dashboard";
 import Settings from "./Settings/Settings";
 
+
 export { Instructors, Booking, MyBookings, Home,
     Auth, NotFound, Admin, Settings
 }

@@ -1,4 +1,4 @@
-import create from 'zustand'
+import { create } from 'zustand'
 import { fetchProfile } from '../services/auth'
 
 export const useAuthStore = create(set => ({

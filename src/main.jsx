@@ -1,19 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
 import './assets/css/reset.css'
 import './assets/css/index.css'
-import { Toaster } from 'react-hot-toast'
-import { useAuthStore } from './store/authStore'
+
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './query/queryClient';
+import { BrowserRouter } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
-// 啟動時嘗試讀取 profile
-useAuthStore.getState().loadProfile()
-
 root.render(
   <React.StrictMode>
-    <App />
-    <Toaster position="top-right" />
+    {/* ← 整個 App 都會有路由上下文 */}
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 )

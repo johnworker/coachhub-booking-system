@@ -8,3 +8,27 @@
 * {
     box-sizing: border-box;
 }
+
+/* 通用按鈕與輸入框 */
+.btn-primary {
+  @apply bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700;
+}
+.btn-secondary {
+  @apply bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300;
+}
+.input {
+  @apply border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300;
+}
+
+/* AuthForm 雙欄 */
+.auth-container {
+  @apply max-w-4xl mx-auto bg-white rounded shadow-lg flex overflow-hidden;
+}
+.auth-panel {
+  @apply flex-1 p-8;
+}
+.auth-divider {
+  @apply border-l border-gray-200;
+}
+
+

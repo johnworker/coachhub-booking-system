@@ -1,67 +1,137 @@
-import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import ProtectedRoute from '../components/ProtectedRoute'
-import AdminRoute from '../components/AdminRoute'
+import React, { lazy, Suspense } from 'react'
+import { Routes, Route, Navigate, createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Loading from '../components/Loading'
 
-// pages
-import Home from '../pages/Home/Home'
-import Login from '../pages/Auth/Login'
-import Register from '../pages/Auth/Register'
-import InstructorList from '../pages/Instructors/InstructorList'
-import InstructorDetail from '../pages/Instructors/InstructorDetail'
-import Booking from '../pages/Booking/Booking'
-import MyBookings from '../pages/MyBookings/MyBookings'
-import Settings from '../pages/Settings/Settings'
-import Dashboard from '../pages/Admin/Dashboard'
-import CoachesMgnt from '../pages/Admin/CoachesMgnt'
-import BookingsMgnt from '../pages/Admin/BookingsMgnt'
-import NotFound from '../pages/NotFound'
+/** 動態載入各頁面 */
+const Home = lazy(() => import('../pages/Home/Home'))
+const Login = lazy(() => import('../pages/Auth/Login'))
+const Register = lazy(() => import('../pages/Auth/Register'))
+const InstructorList = lazy(() => import('../pages/Instructors/InstructorList'))
+const InstructorDetail = lazy(() => import('../pages/Instructors/InstructorDetail'))
+const Booking = lazy(() => import('../pages/Booking/Booking'))
+const MyBookings = lazy(() => import('../pages/MyBookings/MyBookings'))
+const Settings = lazy(() => import('../pages/Settings/Settings'))
+const Dashboard = lazy(() => import('../pages/Admin/Dashboard'))
+const CoachesMgnt = lazy(() => import('../pages/Admin/CoachesMgnt'))
+const BookingsMgnt = lazy(() => import('../pages/Admin/BookingsMgnt'))
+const NotFound = lazy(() => import('../pages/NotFound'))
 
 const router = createBrowserRouter([
   // 公開路由
-  { path: '/login', element: <Login /> },
-  { path: '/register', element: <Register /> },
+  {
+    path: '/login',
+    element: (
+      <Suspense fallback={<Loading />}>
+        <Login />
+      </Suspense>
+    )
+  },
+  {
+    path: '/register',
+    element: (
+      <Suspense fallback={<Loading />}>
+        <Register />
+      </Suspense>
+    )
+  },
 
   // 會員路由
   {
     path: '/',
-    element: <ProtectedRoute><Home/></ProtectedRoute>,
+    element: (
+      <Suspense fallback={<Loading />}>
+        <Home />
+      </Suspense>
+    )
   },
   {
     path: '/coaches',
-    element: <ProtectedRoute><InstructorList/></ProtectedRoute>,
+    element: (
+      <Suspense fallback={<Loading />}>
+        <InstructorList />
+      </Suspense>
+    )
   },
   {
     path: '/coaches/:id',
-    element: <ProtectedRoute><InstructorDetail/></ProtectedRoute>,
+    element: (
+      <Suspense fallback={<Loading />}>
+        <InstructorDetail />
+      </Suspense>
+    )
   },
   {
     path: '/booking/:coachId',
-    element: <ProtectedRoute><Booking/></ProtectedRoute>,
+    element: (
+      <Suspense fallback={<Loading />}>
+        <Booking />
+      </Suspense>
+    )
   },
   {
     path: '/my-bookings',
-    element: <ProtectedRoute><MyBookings/></ProtectedRoute>,
+    element: (
+      <Suspense fallback={<Loading />}>
+        <MyBookings />
+      </Suspense>
+    )
   },
   {
     path: '/settings',
-    element: <ProtectedRoute><Settings/></ProtectedRoute>,
+    element: (
+      <Suspense fallback={<Loading />}>
+        <Settings />
+      </Suspense>
+    )
   },
 
   // 管理後台
   {
     path: '/admin',
-    element: <AdminRoute><Dashboard/></AdminRoute>,
+    element: (
+      <Suspense fallback={<Loading />}>
+        <Dashboard />
+      </Suspense>
+    ),
     children: [
-      { path: 'coaches', element: <CoachesMgnt/> },
-      { path: 'bookings', element: <BookingsMgnt/> },
+      {
+        path: 'coaches',
+        element: (
+          <Suspense fallback={<Loading />}>
+            <CoachesMgnt />
+          </Suspense>
+        )
+      },
+      {
+        path: 'bookings',
+        element: (
+          <Suspense fallback={<Loading />}>
+            <BookingsMgnt />
+          </Suspense>
+        )
+      }
     ]
   },
 
   // 404
-  { path: '*', element: <NotFound /> }
+  {
+    path: '*',
+    element: (
+      <Suspense fallback={<Loading />}>
+        <NotFound />
+      </Suspense>
+    )
+  }
 ])
 
 export default function AppRouter() {
-  return <RouterProvider router={router} />
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      {/* 這裡放所有 Route */}
+      <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+      {/* … */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
 }

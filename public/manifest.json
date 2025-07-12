@@ -1,0 +1,8 @@
+{
+  "short_name": "CoachHub",
+  "name": "CoachHub Booking System",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "icons": [  ]
+}

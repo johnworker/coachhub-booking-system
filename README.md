@@ -1,12 +1,22 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# CoachHub Booking System
 
-Currently, two official plugins are available:
+## 專案簡介
+React + Vite + Tailwind + Zustand + Axios 實作的健身教練預約系統
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 功能
+- 使用者：註冊／登入／編輯個人資料／修改密碼
+- 瀏覽教練列表、篩選、分頁
+- 查看教練詳情並預約
+- 我的預約：查看／編輯／取消／QR Code
+- 管理員：教練管理 CRUD、預約管理＆狀態更新
+- JWT 驗證、Route Guard
 
-## Expanding the ESLint configuration
+## 安裝
+```bash
+git clone ...
+cd coachhub-booking-system
+npm install
+cp .env.example .env
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
