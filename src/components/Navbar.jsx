@@ -1,30 +1,20 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useAuthStore } from '../store/authStore'
+// src/components/Navbar.jsx
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
-  const { token, profile, logout } = useAuthStore()
+  const { pathname } = useLocation();
   return (
     <nav className="bg-white shadow">
-      <div className="container mx-auto flex justify-between p-4">
-        <Link to="/" className="text-xl font-bold">CoachHub</Link>
-        <div className="space-x-4">
-          {token ? (
-            <>
-              <Link to="/coaches">教練列表</Link>
-              <Link to="/my-bookings">我的預約</Link>
-              <Link to="/settings">設定</Link>
-              {profile?.role==='admin' && <Link to="/admin">後台</Link>}
-              <button onClick={logout} className="text-red-500">登出</button>
-            </>
-          ) : (
-            <>
-              <Link to="/login">登入</Link>
-              <Link to="/register">註冊</Link>
-            </>
-          )}
+      <div className="container mx-auto flex justify-between items-center py-4 px-6">
+        <Link to="/" className="text-2xl font-bold">FITNESS</Link>
+        <div className="space-x-6">
+          <Link to="/"      className={pathname==='/'?'font-semibold':''}>Home</Link>
+          <Link to="/coaches" className={pathname.startsWith('/coaches')?'font-semibold':''}>Coaches</Link>
+          <Link to="/about" className={pathname==='/about'?'font-semibold':''}>About</Link>
+          <Link to="/login" className="text-blue-600 hover:underline">Log in</Link>
         </div>
       </div>
     </nav>
-  )
+  );
 }

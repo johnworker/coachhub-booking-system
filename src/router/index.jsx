@@ -1,9 +1,17 @@
-// src/router/index.jsx
 import React, { lazy, Suspense } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import {
+   createBrowserRouter,
+   RouterProvider,
+   Routes,
+   Route,
+   Navigate
+ } from 'react-router-dom';
 import Loading from '../components/Loading';
 import ProtectedRoute from '../components/ProtectedRoute';
 import AdminRoute from '../components/AdminRoute';
+import HomeLayout from '../components/HomeLayout';
+import PublicLayout from '../components/layouts/PublicLayout';
+import AuthLayout from '../components/layouts/AuthLayout';
 
 /** 懶加載頁面元件 */
 const Home = lazy(() => import('../pages/Home/Home'));
@@ -19,9 +27,56 @@ const CoachesMgnt = lazy(() => import('../pages/Admin/CoachesMgnt'));
 const BookingsMgnt = lazy(() => import('../pages/Admin/BookingsMgnt'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
+const router = createBrowserRouter([
+  {
+    // 公開版型：Navbar + Footer
+    element: <PublicLayout />,
+    children: [
+      {
+        index: true,   // "/" 也就是 Home
+        element: (
+          <Suspense fallback={<Loading />}><Home /></Suspense>
+        )
+      },
+      {
+        path: 'coaches',
+        element: (
+          <Suspense fallback={<Loading />}><InstructorList /></Suspense>
+        )
+      }
+    ]
+  },
+  {
+    // Auth 版型：僅顯示 Login/Register
+    element: <AuthLayout />,
+    children: [
+      {
+        path: 'login',
+        element: (
+          <Suspense fallback={<Loading />}><Login /></Suspense>
+        )
+      },
+      {
+        path: 'register',
+        element: (
+          <Suspense fallback={<Loading />}><Register /></Suspense>
+        )
+      }
+    ]
+  },
+  {
+    // 任何未匹配到的路由
+    path: '*',
+    element: (
+      <Suspense fallback={<Loading />}><NotFound /></Suspense>
+    )
+  }
+]);
+
 export default function AppRouter() {
   return (
     <Routes>
+      <RouterProvider router={router} />;
       {/* 公開路由 */}
       <Route
         path="/login"

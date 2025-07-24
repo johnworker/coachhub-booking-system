@@ -1,21 +1,35 @@
-import React, { Suspense } from 'react';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Loading from './components/Loading';
-import ErrorBoundary from './components/ErrorBoundary';
-import AppRouter from './router/index.jsx';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
 
-export default function App() {
+// Components
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Trainers from './components/Trainers';
+import Programs from './components/Programs';
+import Booking from './components/Booking';
+import About from './components/About';
+import Footer from './components/Footer';
+
+function App() {
   return (
-    <ErrorBoundary>
-      <Navbar />
-      <main className="container mx-auto py-6">
-        {/* 路由懶加載 */}
-        <Suspense fallback={<Loading />}>
-          <AppRouter />
-        </Suspense>
-      </main>
-      <Footer />
-    </ErrorBoundary>
+    <Router>
+      <div className="App min-h-screen bg-background">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/trainers" element={<Trainers />} />
+            <Route path="/programs" element={<Programs />} />
+            <Route path="/booking" element={<Booking />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
+
+export default App;
+

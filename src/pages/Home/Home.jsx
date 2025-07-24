@@ -4,6 +4,7 @@ import CoachCard from '../../components/CoachCard';
 import HowItWorks from '../../components/HowItWorks';
 import Loading from '../../components/Loading';
 
+
 export default function Home() {
   // 1. 拿取限量 4 位教練
   const { data: coaches, isLoading, error } = useFeaturedCoaches();
